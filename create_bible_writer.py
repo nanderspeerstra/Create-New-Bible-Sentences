@@ -43,9 +43,9 @@ with open('dataX.txt', 'w') as outX:
     for thing in dataX:
         outX.write(thing + '\n')
         
-with open('dataY.txt', 'w') as outX:
+with open('dataY.txt', 'w') as outY:
     for thing in dataY:
-        outX.write(thing + '\n')  
+        outY.write(thing + '\n')  
 
 # reshape X to be [samples, time steps, features]
 X = numpy.reshape(dataX, (n_patterns, seq_length, 1))
