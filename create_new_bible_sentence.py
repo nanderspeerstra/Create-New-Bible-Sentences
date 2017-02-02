@@ -13,7 +13,7 @@ import tensorflow as tf
 tf.python.control_flow_ops = tf  # some hack to get tf running with Dropout
 
 from keras import backend as K
-K.set_image_dim_ordering('th') # or 'th' for theano
+K.set_image_dim_ordering('tf') # or 'th' for theano
 
 # Get model parameters
 model_par = open('model_parameters.txt', 'r').readlines()
@@ -43,8 +43,8 @@ y = np_utils.to_categorical(dataY)
 
 # define the LSTM model
 model = Sequential()
-model.add(LSTM(256, input_shape=(parameters['X_shape'][0], parameters['X_shape'][1]), return_sequences=True))
-model.add(LSTM(256))
+model.add(LSTM(256, input_shape=(parameters['X_shape'][0], parameters['X_shape'][1])))
+#model.add(LSTM(256))
 model.add(Dropout(0.2))
 model.add(Dense(y.shape[1], activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam')
