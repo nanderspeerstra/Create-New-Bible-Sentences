@@ -60,13 +60,13 @@ y = np_utils.to_categorical(dataY)
 
 # define the LSTM model
 model = Sequential()
-model.add(LSTM(256, input_shape=(parameters['X_shape'][0], parameters['X_shape'][1])))
+model.add(LSTM(parameters['n_hunits'], input_shape=(parameters['X_shape'][0], parameters['X_shape'][1])))
 model.add(Dropout(0.2))
 model.add(Dense(y.shape[1], activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam')
 
 # load the network weights
-filename = args.models_location +'/' + parameters['model_name']
+filename = parameters['model_name']
 model.load_weights(filename)
 model.compile(loss='categorical_crossentropy', optimizer='adam')
 
